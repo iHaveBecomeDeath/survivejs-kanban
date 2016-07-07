@@ -1,15 +1,17 @@
 {
-  "name": "survivejs kanban",
+  "name": "kanban-survivejs",
   "version": "0.0.3",
   "description": "Kanban example from SurviveJS book",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack",
+    "start": "webpack-dev-server --content-base build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "webpack": "^1.13.1"
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1"
   }
 }
