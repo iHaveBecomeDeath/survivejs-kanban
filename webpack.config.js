@@ -12,18 +12,43 @@ const common = {
     entry: {
         app: PATHS.app
     },
+    resolve: {
+        extensions: ['', '.js', '.jsx']
+    },
     output: {
         path: PATHS.build,
         filename: 'bundle.js'
+    },
+    module: {
+        preLoaders: [
+            {
+                test: /\.jsx?$/,
+                loaders: ['eslint'],
+                include: PATHS.app
+            }
+        ],
+        loaders: [
+            {
+                test: /\.css$/,
+                loaders: ['style', 'css'],
+                include: PATHS.app
+            },
+            {
+                test: /\.jsx?$/,
+                loaders: ['babel?cacheDirectory'],
+                include: PATHS.app
+            }
+        ]
     }
 };
 
-if(TARGET === 'build'){
+if (TARGET === 'build') {
     module.exports = merge(common, {});
 }
-if(TARGET === 'start' || !TARGET){
+if (TARGET === 'start' || !TARGET) {
     // start or default
     module.exports = merge(common, {
+        devtool: 'eval-source-map',
         devServer: {
             contentBase: PATHS.build,
             historyApiFallback: true,
